@@ -1,0 +1,137 @@
+<div
+  class="min-h-screen bg-gradient-to-b from-gray-50 to-white py-8 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Header -->
+    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-8 text-center"
+      data-aos="fade-down">
+      Your Shopping Cart <span class="text-indigo-600">({{ itemCount }})</span>
+    </h1>
+
+    <!-- Empty State -->
+    <div *ngIf="cartItems.length === 0" class="text-center py-20"
+      data-aos="fade-up">
+      <div
+        class="w-24 h-24 mx-auto mb-6 bg-gray-200 rounded-full flex items-center justify-center text-5xl">
+        🛒
+      </div>
+      <p class="text-xl sm:text-2xl text-gray-600 mb-6">Your cart is empty</p>
+      <a routerLink="/"
+        class="inline-block bg-indigo-600 text-white px-8 py-4 rounded-xl hover:bg-indigo-700 transition font-semibold text-lg shadow-lg hover:shadow-xl">
+        Continue Shopping
+      </a>
+    </div>
+
+    <!-- Cart Content -->
+    <div *ngIf="cartItems.length > 0"
+      class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+
+      <!-- Cart Items -->
+      <div class="lg:col-span-2 space-y-6">
+        <div
+          *ngFor="let item of cartItems; trackBy: trackByItemId; let i = index"
+          class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300"
+          data-aos="fade-up"
+          [attr.data-aos-delay]="i * 100">
+
+          <div class="flex flex-col md:flex-row">
+            <!-- Product Image -->
+            <div class="md:w-56 lg:w-64 flex-shrink-0">
+              <img [src]="item.thumbnail || 'https://via.placeholder.com/300'"
+                [alt]="item.title"
+                loading="lazy"
+                class="w-full h-48 md:h-full object-cover">
+            </div>
+
+            <!-- Product Details -->
+            <div class="flex-1 p-6 md:p-8 flex flex-col justify-between">
+              <div class="flex justify-between items-start gap-4">
+                <h3
+                  class="text-lg sm:text-xl font-semibold text-gray-900 line-clamp-2 pr-4">
+                  {{ item.title }}
+                </h3>
+                <button (click)="removeItem(i)"
+                  class="flex-shrink-0 text-red-500 hover:text-red-700 hover:bg-red-50 p-2 rounded-full transition"
+                  aria-label="Remove item">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+
+              <div class="mt-4">
+                <p class="text-gray-600">Price:
+                  <span class="font-semibold text-indigo-600 text-lg">${{
+                    item.price | number:'1.2-2' }}</span>
+                </p>
+              </div>
+
+              <!-- Quantity Controls -->
+              <div class="flex items-center gap-4 my-6">
+                <button (click)="decreaseQty(i)"
+                  [disabled]="item.quantity <= 1"
+                  class="w-12 h-12 rounded-full bg-gray-200 hover:bg-gray-300 disabled:bg-gray-100 disabled:text-gray-400 flex items-center justify-center text-2xl transition"
+                  aria-label="Decrease quantity">
+                  −
+                </button>
+                <span class="text-xl font-bold w-16 text-center">{{
+                  item.quantity }}</span>
+                <button (click)="increaseQty(i)"
+                  class="w-12 h-12 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center text-2xl transition shadow-md">
+                  +
+                </button>
+              </div>
+
+              <p class="text-lg font-bold text-indigo-600">
+                Total: ${{ (item.price * item.quantity) | number:'1.2-2' }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary (Sticky on large screens) -->
+      <div class="lg:col-span-1">
+        <div class="bg-white rounded-2xl shadow-lg p-6 lg:p-8 sticky top-6"
+          data-aos="fade-left">
+          <h2 class="text-2xl font-bold text-gray-900 mb-6">Order Summary</h2>
+
+          <div class="space-y-4 text-gray-700">
+            <div class="flex justify-between">
+              <span>Subtotal ({{ itemCount }} items)</span>
+              <span class="font-medium">${{ subtotal | number:'1.2-2' }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Tax (10%)</span>
+              <span class="font-medium">${{ tax | number:'1.2-2' }}</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Shipping</span>
+              <span class="font-medium text-green-600">
+                {{ shipping === 0 ? 'Free' : '$' + shipping }}
+                <span *ngIf="shipping === 0"
+                  class="text-xs block text-green-700">Over $100!</span>
+              </span>
+            </div>
+            <hr class="border-gray-300 my-4">
+            <div class="flex justify-between text-xl font-bold text-gray-900">
+              <span>Total</span>
+              <span class="text-indigo-600">${{ total | number:'1.2-2' }}</span>
+            </div>
+          </div>
+          <app-button label="Proceed to Checkout" (click)="redirect()"
+            customClass="w-full mt-8 bg-indigo-600 text-white py-4 rounded-xl hover:bg-indigo-700 transition font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          </app-button>
+          <div class="text-center mt-6">
+            <a routerLink="/"
+              class="text-indigo-600 hover:underline font-medium">
+              ← Continue Shopping
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

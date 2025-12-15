@@ -1,0 +1,31 @@
+<!-- BACKDROP -->
+<div
+  *ngIf="isOpen"
+  class="fixed inset-0 bg-black/40 z-40"
+  (click)="close.emit()">
+</div>
+
+<!-- SIDEBAR -->
+<aside
+  class="fixed top-0 left-0 h-full w-72 bg-white z-50 shadow-xl transform transition-transform duration-300"
+  [class.translate-x-0]="isOpen"
+  [class.-translate-x-full]="!isOpen">
+
+  <div class="flex justify-between items-center p-4 border-b">
+    <h2 class="text-lg font-bold">Categories</h2>
+    <button (click)="close.emit()">✕</button>
+  </div>
+
+  <div class="p-4 space-y-2 overflow-y-auto">
+    <button
+      *ngFor="let cat of categories"
+      (click)="goToCategory(cat.slug)"
+      class="w-full text-left px-4 py-3 rounded-lg hover:bg-red-50 transition">
+      {{ cat.name }}
+    </button>
+
+    <p *ngIf="!categories.length" class="text-center text-gray-500">
+      No categories found
+    </p>
+  </div>
+</aside>

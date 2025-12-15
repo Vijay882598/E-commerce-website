@@ -1,0 +1,120 @@
+<div
+  data-aos="fade-up"
+  class="relative w-full overflow-hidden bg-[#f7f7f7]">
+
+  <!-- Slides Wrapper -->
+  <div
+    class="flex transition-transform duration-700 ease-in-out"
+    [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+
+    <!-- Slide -->
+    <div
+      *ngFor="let img of slides; let i = index"
+      class="min-w-full">
+
+      <div
+        class="max-w-7xl mx-auto px-6 py-10 md:py-20
+               grid grid-cols-1 md:grid-cols-2 items-center gap-10">
+
+        <!-- LEFT CONTENT -->
+        <div class="space-y-6 text-center md:text-left">
+
+          <span
+            class="inline-block bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded">
+            Best Prices
+          </span>
+
+          <h1
+            class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl
+                   font-bold text-gray-900 leading-tight">
+            Incredible Prices <br />
+            on All Your <br />
+            Favorite Items
+          </h1>
+
+          <p class="text-gray-600 max-w-md mx-auto md:mx-0">
+            Get more for less on selected brands
+          </p>
+
+          <!-- <button
+            class="inline-flex items-center justify-center
+                   bg-purple-600 text-white
+                   px-8 py-3 rounded-full
+                   font-semibold
+                   hover:bg-purple-700 transition">
+            Shop Now
+          </button> -->
+          <app-button
+            label="Shop Now"
+            variant="none"
+            customClass=" mt-3 inline-flex items-center justify-center
+                   bg-purple-600 text-white
+                   px-8 py-3 rounded-full
+                   font-semibold
+                   hover:bg-purple-700 transition"
+            (clicked)="goToShop()">
+            <!-- <svg
+    button-suffix
+    class="w-6 h-6"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24">
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="3"
+      d="M17 8l4 4m0 0l-4 4m4-4H3" />
+  </svg> -->
+          </app-button>
+
+        </div>
+
+        <!-- RIGHT IMAGE -->
+        <div class="flex justify-center md:justify-end">
+          <img
+            [src]="img"
+            class="max-h-[260px] sm:max-h-[320px] md:max-h-[420px]
+                   object-contain drop-shadow-xl"
+            loading="lazy" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Prev Button -->
+  <button
+    (click)="prev()"
+    class="absolute left-4 top-1/2 -translate-y-1/2
+           bg-white/80 text-gray-800
+           w-10 h-10 rounded-full
+           shadow hover:bg-white transition">
+    ‹
+  </button>
+
+  <!-- Next Button -->
+  <button
+    (click)="next()"
+    class="absolute right-4 top-1/2 -translate-y-1/2
+           bg-white/80 text-gray-800
+           w-10 h-10 rounded-full
+           shadow hover:bg-white transition">
+    ›
+  </button>
+
+  <!-- Dots -->
+  <div
+    class="absolute bottom-6 left-1/2 -translate-x-1/2
+           flex gap-2">
+    <span
+      *ngFor="let _ of slides; let i = index"
+      (click)="goToSlide(i)"
+      class="w-3 h-3 rounded-full cursor-pointer transition-all"
+      [ngClass]="{
+        'bg-purple-600 scale-125': i === currentIndex,
+        'bg-gray-400 hover:bg-gray-600': i !== currentIndex
+      }">
+    </span>
+  </div>
+
+</div>

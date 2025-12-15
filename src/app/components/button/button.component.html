@@ -1,0 +1,19 @@
+<button
+  type="button"
+  [disabled]="disabled"
+  (click)="onClick($event)"
+  class="inline-flex items-center justify-center transition-all duration-300"
+  [ngClass]="[
+    variantClasses[variant],
+    disabled ? 'opacity-50 cursor-not-allowed' : '',
+    customClass
+  ]"
+>
+  <!-- LEFT ICON -->
+  <ng-content select="[button-icon]"></ng-content>
+
+  <span *ngIf="label">{{ label }}</span>
+
+  <!-- RIGHT ICON / SVG -->
+  <ng-content select="[button-suffix]"></ng-content>
+</button>
