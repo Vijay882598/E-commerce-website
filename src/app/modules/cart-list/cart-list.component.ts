@@ -65,11 +65,11 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   get tax(): number {
-    return this.subtotal * 0.10; 
+    return this.subtotal * 0.10;
   }
 
   get shipping(): number {
-    return this.subtotal > 100 ? 0 : 10; 
+    return this.subtotal > 100 ? 0 : 10;
   }
 
   get total(): number {
