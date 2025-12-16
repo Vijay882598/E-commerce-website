@@ -1,4 +1,3 @@
-// base-api.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { API_LIST } from '../../config/api.config';
@@ -24,13 +23,9 @@ export class BaseApiService {
     }
 
     let url = api.url;
-
-    // Handle path parameter (e.g., /category/smartphones)
     if (param) {
       url = `${url}/${encodeURIComponent(param)}`;
     }
-
-    // Build query params using HttpParams (cleaner & safer)
     let params = new HttpParams();
     if (options?.limit !== undefined) {
       params = params.set('limit', options.limit.toString());
@@ -38,7 +33,6 @@ export class BaseApiService {
     if (options?.skip !== undefined) {
       params = params.set('skip', options.skip.toString());
     }
-
     console.log('API Call:', api.method, url, params.toString() || 'no params');
 
     switch (api.method.toUpperCase()) {

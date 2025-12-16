@@ -1,4 +1,3 @@
-// src/app/core/models/product.interfaces.ts
 export interface Product {
   id: number;
   title: string;
@@ -22,5 +21,5 @@ export interface CategoryProductResponse {
 export interface ShopCategory {
   name: string;
   slug: string;
-  image: string; // Representative image for category
+  image: string; 
 }

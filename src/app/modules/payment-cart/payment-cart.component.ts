@@ -1,4 +1,3 @@
-// payment-cart.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../components/button/button.component';
@@ -41,7 +40,6 @@ export class PaymentCartComponent implements OnInit, OnDestroy {
     try {
       const stored = localStorage.getItem('orders');
       this.orders = stored ? JSON.parse(stored) : [];
-      // Sort by newest first
       this.orders.sort((a, b) => new Date(b.orderDate).getTime() - new Date(a.orderDate).getTime());
     } catch (error) {
       console.error('Failed to load orders:', error);
@@ -66,22 +64,15 @@ export class PaymentCartComponent implements OnInit, OnDestroy {
       }),
       status: 'Completed'
     };
-
-    // Save to orders
     const updatedOrders = [newOrder, ...this.orders];
     localStorage.setItem('orders', JSON.stringify(updatedOrders));
-
-    // Clear current product
     localStorage.removeItem('buyNowProduct');
     this.currentProduct = null;
-
-    // Update UI
     this.orders = updatedOrders;
     this.showFeedback(`${newOrder.title} purchased successfully!`, 'success');
   }
 
   private showFeedback(message: string, type: 'success' | 'error'): void {
-    // You can replace this with your toast service later
     const color = type === 'success' ? 'bg-green-500' : 'bg-red-500';
     const feedback = document.createElement('div');
     feedback.className = `fixed top-4 left-1/2 -translate-x-1/2 ${color} text-white px-8 py-4 rounded-xl shadow-2xl z-50 animate-pulse`;

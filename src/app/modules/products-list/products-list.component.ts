@@ -1,4 +1,3 @@
-// products-list.component.ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -37,7 +36,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     AOS.init({ once: true, duration: 600 });
 
-    // Subscribe to route params with takeUntil for cleanup
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe(params => {
       const slug = params.get('category');
       if (slug) {
@@ -57,8 +55,7 @@ export class ProductsListComponent implements OnInit, OnDestroy {
 
   private loadProductsByCategory(slug: string): void {
     this.loader.show();
-    this.products = []; // Reset products
-
+    this.products = [];
     this.api
       .callApi<CategoryProductResponse>('GET_PRODUCTS_BY_CATEGORY', null, slug, { limit: 20 })
       .pipe(takeUntil(this.destroy$))
@@ -103,7 +100,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
     this.selectedProduct = null;
   }
 
-  // Optional: Human-readable category name
   private formatCategoryName(slug: string): string {
     return slug
       .split('-')
@@ -111,7 +107,6 @@ export class ProductsListComponent implements OnInit, OnDestroy {
       .join(' ');
   }
 
-  // Optional: TrackBy for performance
   trackByProductId(index: number, product: Product): number {
     return product.id;
   }

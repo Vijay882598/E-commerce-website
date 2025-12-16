@@ -24,9 +24,7 @@ export class CartListComponent implements OnInit, OnDestroy {
     AOS.init({ duration: 700, once: true, offset: 100 });
   }
 
-  ngOnDestroy(): void {
-    // Optional: Refresh AOS if needed elsewhere
-  }
+  ngOnDestroy(): void {}
 
   private loadCart(): void {
     try {
@@ -59,7 +57,6 @@ export class CartListComponent implements OnInit, OnDestroy {
     this.saveCart();
   }
 
-  // Real-time calculated values
   get subtotal(): number {
     return this.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   }
@@ -85,6 +82,6 @@ export class CartListComponent implements OnInit, OnDestroy {
     return item.id;
   }
   redirect() {
-    this.router.navigate(['./tester'])
+    this.router.navigate(['/'])
   }
 }

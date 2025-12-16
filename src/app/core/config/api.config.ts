@@ -12,7 +12,7 @@ export const API_LIST = [
         method: 'GET',
         status: true
     },
-      {
+    {
         name: 'GET_PRODUCTS',
         url: 'https://dummyjson.com/products',
         method: 'GET',
@@ -24,19 +24,19 @@ export const API_LIST = [
         status: true,
         method: 'POST'
     },
-      {
+    {
         name: 'ADD_TO_CART',
         url: 'https://dummyjson.com/carts/add',
         status: true,
         method: 'POST'
     },
-     {
+    {
         name: 'GET_SINGLE_PRODUCT_DETAIL',
         url: 'https://dummyjson.com/products',
         status: true,
         method: 'GET'
     },
-     {
+    {
         name: 'GET_CARTS_LIST',
         url: 'https://dummyjson.com/carts/user/1',
         status: true,

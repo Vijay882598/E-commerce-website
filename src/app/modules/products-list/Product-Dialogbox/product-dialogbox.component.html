@@ -1,18 +1,15 @@
-<!-- Backdrop -->
 <div
   *ngIf="isOpen"
   class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 backdrop-blur-sm transition-opacity duration-300"
   (click)="closeDialog()"
   data-aos="fade">
 
-  <!-- Dialog Container -->
   <div
     class="relative bg-white w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-2xl shadow-2xl"
     (click)="$event.stopPropagation()"
     data-aos="zoom-in"
     data-aos-duration="400">
 
-    <!-- Close Button -->
     <button
       (click)="closeDialog()"
       class="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-white/80 backdrop-blur-sm 
@@ -26,12 +23,10 @@
       </svg>
     </button>
 
-    <!-- Padding Container -->
     <div class="p-5 sm:p-8 lg:p-10">
       <div *ngIf="product"
         class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
 
-        <!-- Product Image Section -->
         <div class="relative overflow-hidden rounded-2xl bg-gray-50"
           data-aos="fade-right" data-aos-delay="100">
           <img
@@ -41,11 +36,8 @@
             class="w-full h-64 sm:h-80 md:h-96 lg:h-full max-h-96 object-contain transition-transform duration-700 hover:scale-105">
         </div>
 
-        <!-- Product Info Section -->
         <div class="flex flex-col justify-center space-y-6" data-aos="fade-left"
           data-aos-delay="200">
-
-          <!-- Title & Description -->
           <div>
             <h2
               class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
@@ -56,7 +48,6 @@
             </p>
           </div>
 
-          <!-- Price & Details -->
           <div class="space-y-4">
             <p class="text-2xl sm:text-3xl md:text-4xl font-bold text-red-600">
               ${{ product.price | number:'1.2-2' }}
@@ -73,11 +64,9 @@
             </div>
           </div>
 
-          <!-- Responsive Action Buttons -->
           <div class="flex flex-col sm:flex-row gap-4 w-full" data-aos="fade-up"
             data-aos-delay="300">
 
-            <!-- Add to Cart Button -->
             <app-button
               label="Add to Cart"
               customClass="flex-1 min-h-14 px-6 py-4 text-base sm:text-lg font-bold rounded-xl
@@ -95,7 +84,6 @@
               <span class="hidden sm:inline">Add to Cart</span>
             </app-button>
 
-            <!-- Buy Now Button -->
             <app-button
               label="Buy Now"
               customClass="flex-1 min-h-14 px-6 py-4 text-base sm:text-lg font-bold rounded-xl
@@ -114,7 +102,6 @@
             </app-button>
           </div>
 
-          <!-- Mobile-only text labels (visible when icons only on small screens) -->
           <div class="sm:hidden text-center text-xs text-gray-500 mt-2">
             Swipe up for more details
           </div>

@@ -12,10 +12,8 @@ import * as AOS from 'aos';
   styleUrl: './footer.component.scss'
 })
 export class FooterComponent {
-
   currentYear = new Date().getFullYear();
 
-  // Payment method icons (can be moved to assets if needed)
   paymentMethods = [
     { name: 'Visa', src: 'https://static.wixstatic.com/media/84770f_27001c40036842889a78a72766ad4700~mv2.png/v1/fill/w_110,h_66,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Visa.png' },
     { name: 'Mastercard', src: 'https://static.wixstatic.com/media/c837a6_e8798fcfdaf144478a5c7da1ba28ff2c~mv2.png/v1/fill/w_110,h_68,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/brand-mastercard%403x.png' },

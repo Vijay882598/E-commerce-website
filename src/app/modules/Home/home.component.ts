@@ -1,4 +1,3 @@
-// home.component.ts
 import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import * as AOS from 'aos';
 import { BaseApiService } from '../../core/service/Base-Api/base-api.service';
@@ -11,8 +10,6 @@ import { ButtonComponent } from '../../components/button/button.component';
 import { forkJoin, of, Subject } from 'rxjs';
 import { catchError, finalize, takeUntil } from 'rxjs/operators';
 import { AuthService } from '../../core/service/Auth-service/auth.service';
-
-// Import all interfaces from the shared file
 import {
   Category,
   Product,
@@ -132,9 +129,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.loadInitialData();
   }
 
-  ngAfterViewInit(): void {
-    // AOS.refresh() if adding dynamic content later
-  }
+  ngAfterViewInit(): void { }
 
   ngOnDestroy(): void {
     this.destroy$.next();

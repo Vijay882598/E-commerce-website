@@ -1,4 +1,3 @@
-// product-dialogbox.component.ts
 import { Component, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../../components/button/button.component';
@@ -25,10 +24,9 @@ export class ProductDialogboxComponent implements OnChanges {
     private router: Router
   ) { }
 
-  // Re-init AOS only when dialog opens (better than ngOnInit)
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isOpen'] && this.isOpen) {
-      setTimeout(() => AOS.refresh(), 100); // Refresh after DOM render
+      setTimeout(() => AOS.refresh(), 100);
     }
   }
 

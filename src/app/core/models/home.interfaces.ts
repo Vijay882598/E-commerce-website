@@ -1,5 +1,3 @@
-// src/app/core/models/home.interfaces.ts
-
 export interface Category {
   name: string;
   slug: string;
@@ -21,15 +19,15 @@ export interface HeroDeal {
   alt: string;
   gradient: string;
   tag: string;
-  title: string; // Supports HTML via [innerHTML]
+  title: string;
   subtitle: string;
-  buttonColor: string; // e.g., 'text-red-600'
+  buttonColor: string;
   category: string;
 }
 
 export interface Feature {
   icon: string;
-  title: string; // Supports HTML via [innerHTML]
+  title: string; 
   desc: string;
 }
 

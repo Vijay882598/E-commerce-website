@@ -9,11 +9,7 @@
     customClass
   ]"
 >
-  <!-- LEFT ICON -->
   <ng-content select="[button-icon]"></ng-content>
-
   <span *ngIf="label">{{ label }}</span>
-
-  <!-- RIGHT ICON / SVG -->
   <ng-content select="[button-suffix]"></ng-content>
 </button>
