@@ -3,12 +3,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../components/button/button.component';
 import * as AOS from 'aos';
+import { RouterLink } from '@angular/router';
 import { BuyNowProduct, Order } from '../../core/models/order.interfaces';
 
 @Component({
   selector: 'app-payment-cart',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent, RouterLink],
   templateUrl: './payment-cart.component.html',
   styleUrl: './payment-cart.component.scss'
 })

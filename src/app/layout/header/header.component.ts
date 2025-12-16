@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   searchText = '';
   isLoggedIn = false;
   userEmail: any | null = null;
-  userInitial = 'U'; // Default
+  userInitial = 'U'; 
   @ViewChild('scrollContainer', { static: false }) scrollContainer!: ElementRef<HTMLDivElement>;
 
   constructor(
@@ -140,7 +140,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   goToCategory(category: Category): void {
     this.router.navigate(['/products', category.slug || category.name.toLowerCase().replace(/\s+/g, '-')]);
-    this.toggleSidebar(); 
+    this.toggleSidebar();
   }
 
   pauseScroll(): void {
@@ -150,7 +150,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   resumeScroll(): void {
     this.scrollContainer?.nativeElement.classList.remove('pause-scroll');
   }
-  
+
   trackByCategory(index: number, category: Category): string {
     return category.slug || category.name;
   }
@@ -158,8 +158,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
   goToCart() {
     this.router.navigate(['/carts/cart']);
   }
-  
-  login(){
-        this.router.navigate(['/login']);
+
+  login() {
+    this.router.navigate(['/login']);
   }
 }
